@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diplops-app-dp
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: diplops-app
+          image: cr.yandex/crphaqh680sfgcqvcue7/diplops-app:latest
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: image-puller-sec
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: diplops-app-svc
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      nodePort: 30080
