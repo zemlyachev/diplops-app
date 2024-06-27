@@ -16,4 +16,5 @@ jobs:
           REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
           DOCKERFILE_PATH: "./Dockerfile"
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: latest
+#          IMAGE_TAG: ${{ github.sha }}
