@@ -16,4 +16,4 @@ jobs:
           REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
           DOCKERFILE_PATH: "./Dockerfile"
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
-          IMAGE_TAG: cr.yandex/${{ secrets.REGISTRY_ID }}/${{ env.IMAGE_NAME }}:latest
+          IMAGE_TAG: latest
