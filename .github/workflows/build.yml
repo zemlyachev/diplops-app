@@ -1,0 +1,19 @@
+name: Build latest ad Deploy to Registry
+on:
+  push:
+    branches:
+      - main
+env:
+  IMAGE_NAME: "diplops-app"
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: raisultan/ycr-push@main
+        env:
+          KEY_JSON: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          REGISTRY_ID: ${{ secrets.REGISTRY_ID }}
+          DOCKERFILE_PATH: "./Dockerfile"
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_TAG: cr.yandex/${{ secrets.REGISTRY_ID }}/${{ env.IMAGE_NAME }}:latest
