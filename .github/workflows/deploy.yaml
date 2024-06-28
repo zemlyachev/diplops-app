@@ -17,12 +17,12 @@ jobs:
           DOCKERFILE_PATH: "./Dockerfile"
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_TAG: ${{ github.ref_name }}
-      - name: Update app-dp-svc.yaml
+      - name: Update app-dp.yaml
         uses: OpsVerseIO/image-updater-action@0.1.0
         with:
-          valueFile: 'app-dp-svc.yaml'
+          valueFile: 'app-dp.yaml'
           propertyPath: 'spec.template.spec.containers[0].image'
-          value: ${{ github.ref_name }}
+          value: cr.yandex/${{ secrets.REGISTRY_ID }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
           commitChange: false
       - uses: actions-hub/kubectl@master
         env:
